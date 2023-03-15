@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="xyz">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Apple Calculator ©</title>
+        <meta name="description" content="Une calculatrice au style de Apple en version iOS 6.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./stylesheets/style.css">
+        <!--<link rel="icon" type="image/x-icon" href="">-->
+
+        <!-- Socials -->
+        <meta content="Apple Calculator ©" property="og:title">
+        <meta content="Une calculatrice au style de Apple en version iOS 6." property="og:description">
+        <meta content="" property="og:url">
+        <meta content="" property="og:image">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta content="#FFFFFF" data-react-helmet="true" name="theme-color">
+    </head>
+    <body>
+        <h1>iOS 6 Maths</h1>
+        <div id="calculator">
+            <div id="calculator-screen">
+                <p id="calculator-screen-text">0</p>
+            </div>
+            <div id="calculator-buttons-container">
+                <button class="calculator-button calculator-button-brown" id="clear" onclick="clearText()">c</button>
+                <button class="calculator-button calculator-button-brown" id="plusminus" onclick="equation(`plusminus`)">±</button>
+                <button class="calculator-button calculator-button-brown" id="divide" onclick="equation(`division`)">÷</button>
+                <button class="calculator-button calculator-button-brown" id="multiple" onclick="equation(`multiplication`)">×</button>
+                <button class="calculator-button calculator-button-brown" id="minus" onclick="equation(`substraction`)">-</button>
+                <button class="calculator-button calculator-button-brown" id="plus" onclick="equation(`addition`)">+</button>
+                <button class="calculator-button calculator-button-orange" id="egal" onclick="egal()">=</button>
+                <button class="calculator-button calculator-button-black" id="zero" onclick="addNumber(0)">0</button>
+                <button class="calculator-button calculator-button-black" id="one" onclick="addNumber(1)">1</button>
+                <button class="calculator-button calculator-button-black" id="two" onclick="addNumber(2)">2</button>
+                <button class="calculator-button calculator-button-black" id="three" onclick="addNumber(3)">3</button>
+                <button class="calculator-button calculator-button-black" id="four" onclick="addNumber(4)">4</button>
+                <button class="calculator-button calculator-button-black" id="five" onclick="addNumber(5)">5</button>
+                <button class="calculator-button calculator-button-black" id="six" onclick="addNumber(6)">6</button>
+                <button class="calculator-button calculator-button-black" id="seven" onclick="addNumber(7)">7</button>
+                <button class="calculator-button calculator-button-black" id="eight" onclick="addNumber(8)">8</button>
+                <button class="calculator-button calculator-button-black" id="nine" onclick="addNumber(9)">9</button>
+                <button class="calculator-button calculator-button-black" id="point" onclick="addNumber('.')">,</button>
+            </div>
+        </div>
+        <p id="msg"></p>
+        <script src="./index.js"></script>
+    </body>
+</html>

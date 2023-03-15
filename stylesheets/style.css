@@ -1,0 +1,125 @@
+@font-face {
+    font-family: "SFPro";
+    src: url("../assets/SFPRODISPLAYMEDIUM.OTF");
+}
+@font-face {
+    font-family: "SFProBold";
+    src: url("../assets/SFPRODISPLAYBOLD.OTF");
+}
+
+html, body{
+    height: 100%;
+    overflow: hidden;
+}
+body{
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+h1{
+    font-family: SFPro;
+    color: #f2f4f3;
+}
+#msg:after{
+    content: "Skeuomorphism, we miss you";
+    font-family: SFPro;
+    color: #f2f4f3;
+    font-size: 1rem;
+    font-style: italic;
+}
+#msg:before{
+    content: "💖 ";
+    font-style: normal;
+}
+#calculator{
+    border: #000 solid 5px;
+}
+#calculator-screen{
+    background: rgb(237,239,225);
+    background: linear-gradient(180deg, rgba(237,239,225,1) 0%, rgba(218,222,193,1) 49%, rgba(213,217,184,1) 50%, rgba(233,235,218,1) 100%);
+    height: 80px;
+    width: 270px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    overflow: hidden;
+}
+#calculator-screen-text{
+    font-family: SFProBold;
+    font-size: 3rem;
+    color: #062512;
+}
+
+#calculator-buttons-container{
+    background: #1b1b1b;
+    display: grid;
+    grid-template-columns: repeat(4, 60px);
+    grid-template-rows: repeat(5, 60px);
+    grid-column-gap: 10px;
+    grid-row-gap: 20px;
+    grid-template-areas:
+            "clear plusminus divide multiple"
+            "seven eight nine minus"
+            "four five six plus"
+            "one two three egal"
+            "zero zero point egal";
+    padding: 10px;
+}
+.calculator-button{
+    border-radius: 7px;
+    border: none;
+    color: white;
+    font-family: SFProBold;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 150ms ease-in-out;
+}
+.calculator-button:hover{
+    color: rgba(255, 255, 255, 0.7);
+}
+.calculator-button-brown{
+    background: linear-gradient(0deg, rgba(89,72,63,1) 18%, rgba(111,93,83,1) 52%, rgba(125,109,100,1) 53%, rgba(173,163,157,1) 100%);
+}
+.calculator-button-brown:active{
+    background: rgb(89,72,63);
+}
+.calculator-button-black{
+    background: linear-gradient(0deg, rgba(0,0,0,1) 18%, rgba(0,0,0,1) 52%, rgba(16,16,16,1) 53%, rgba(98,98,98,1) 100%);
+}
+.calculator-button-black:active{
+    background: rgb(0,0,0);
+}
+.calculator-button-orange{
+    background: linear-gradient(0deg, rgba(218,104,18,1) 0%, rgba(246,132,36,1) 79%, rgba(247,143,54,1) 80%, rgba(252,192,142,1) 100%);
+}
+.calculator-button-orange:active{
+    background: rgb(218,104,18);
+}
+
+#clear{
+    grid-area: clear;
+}
+#plusminus{
+    grid-area: plusminus;
+}
+#divide{
+    grid-area: divide;
+}
+#multiple{
+    grid-area: multiple;
+}
+#minus{
+    grid-area: minus;
+}
+#egal{
+    grid-area: egal;
+}
+#plus{
+    grid-area: plus;
+}
+#zero{
+    grid-area: zero;
+}
