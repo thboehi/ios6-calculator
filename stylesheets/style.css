@@ -6,7 +6,11 @@
     font-family: "SFProBold";
     src: url("../assets/SFPRODISPLAYBOLD.OTF");
 }
-
+*{
+    margin: 0;
+    padding: 0;
+    touch-action: manipulation;
+}
 html, body{
     height: 100%;
     overflow: hidden;
@@ -76,6 +80,7 @@ h1{
     font-size: 1.5rem;
     cursor: pointer;
     transition: color 150ms ease-in-out;
+    text-align: center;
 }
 .calculator-button:hover{
     color: rgba(255, 255, 255, 0.7);
@@ -122,4 +127,28 @@ h1{
 }
 #zero{
     grid-area: zero;
+}
+#one{
+    grid-area: one;
+}
+#two{
+    grid-area: two;
+}
+#three{
+    grid-area: three;
+}
+#four{
+    grid-area: four;
+}
+#five{
+    grid-area: five;
+}
+#six{
+    grid-area: six;
+}
+#seven{
+    grid-area: seven;
+}
+#eight{
+    grid-area: eight;
 }
