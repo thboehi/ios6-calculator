@@ -12,6 +12,10 @@ let result = 0
 let screenTextContainer = document.getElementById("calculator-screen-text")
 //Define if the calculator state, if showing a result or if entering a number
 let onResult = false
+//Define a var to save the text before it's copied
+let beforeCopy
+//Text that is shown on copy
+let copyConfirmationText = "Copied !"
 
 //This part is enterly for visual. It is done to adapt the size of the buttons when the page is loaded or when resized.
 //The first variable is when the page is loaded, it get the button width (as on css it is 1fr and it adapts on user's screen)
@@ -40,6 +44,27 @@ window.addEventListener('resize', () => {
     }
     
 });
+//Add a copy function to copy last result
+screenTextContainer.addEventListener("click", () => {
+    if (screenTextContainer.textContent.includes(copyConfirmationText)){
+        //If the screen is showing the copy confirmation, stop the function
+        return;
+    } else if (screenTextContainer.textContent.includes("...")){
+        //If the result is an answer that was shorten, get the result variable instead of what's on the screen
+        navigator.clipboard.writeText(result)
+    } else {
+        //If everything is alright, copy what's on the screen
+        navigator.clipboard.writeText(screenTextContainer.textContent)
+    }
+    //Save what number is on the screen
+    beforeCopy = screenTextContainer.textContent
+    //Change text to copied!
+    screenTextContainer.textContent = copyConfirmationText
+    //Set the screen to show the previous number
+    setTimeout(() => {
+        screenTextContainer.textContent = beforeCopy
+    }, 500);
+})
 
 
 //Function to add number
@@ -82,7 +107,10 @@ function equation(type){
     //If the user already pressed once and is on the second etap (which is add a second number) it doesn't
     // get what on the screen again as it is empty.
     if (screenTextContainer.textContent === ""){
-        
+        //If the text on screen is empty, just change the equation type but nothing else
+    } else if(screenTextContainer.textContent === copyConfirmationText){
+        //If the screen is showing copy text, stop function (Nobody should ever do this, this is to achieve minimum possible error as possible)
+        return;
     } else {
         onScreenNumber = screenTextContainer.textContent
         lastNumber = screenTextContainer.textContent

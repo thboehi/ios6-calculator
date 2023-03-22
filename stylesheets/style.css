@@ -65,6 +65,7 @@ h1:before{
     font-family: SFProBold;
     font-size: 3rem;
     color: #062512;
+    cursor: pointer;
 }
 
 #calculator-buttons-container{
