@@ -22,6 +22,8 @@ let ntfActive = false
 let isWaiting = false
 //Define a new var for last equation number to use multiple egal (Not use for the moment, future update)
 //let lastEquationNumber
+//Define if the next number will be negative, because of opposite function (Not used for the moment, future update)
+//let isNegative = false
 
 //This part is enterly for visual. It is done to adapt the size of the buttons when the page is loaded or when resized.
 //The first variable is when the page is loaded, it get the button width (as on css it is 1fr and it adapts on user's screen)
@@ -81,11 +83,34 @@ function addNumber(nbr){
         //If the screen is actually showing an answer, reset the screen with the new inputed number and put onResult boolean to false
         screenTextContainer.textContent = nbr
         onResult = false
-    } else if(onScreenNumber.length >= 5 || onScreenNumber.includes(".") && nbr === "."){
+    } else if(onScreenNumber.length >= 5){
+        //Notification to show that you cannot add more than 5 numbers
+        if (ntfActive){
+            //If a notification is already on screen, don't show a new one
+        } else if (!ntfActive) {
+            //Activate notification on screen
+            ntfActive = true
+            //Set in html that ntf-container must be visible
+            document.getElementById("ntf-container").setAttribute("data-value", "visible")
+            //Set the message that will be shown
+            document.getElementById("ntf-content").textContent = "5 numbers maximum allowed."
+            //Set a timeout that will hide the message after 3 seconds
+            setTimeout(() => {
+                //Deactivate notification on screen
+                ntfActive = false
+                //Set in html that ntf-container must be hidden
+                document.getElementById("ntf-container").setAttribute("data-value", "hidden")
+            }, 3000);
+        }
+        //If the number is bigger than 5 characters, stop adding more. Or if he tries to add . but there is already one, don't add.
+        return;
+    } else if (onScreenNumber.includes(".") && nbr === "."){
+        //Same as before, please read above for explanation
         if (ntfActive){
         } else if (!ntfActive) {
             ntfActive = true
             document.getElementById("ntf-container").setAttribute("data-value", "visible")
+            document.getElementById("ntf-content").textContent = "Why 2 points?.."
             setTimeout(() => {
                 ntfActive = false
                 document.getElementById("ntf-container").setAttribute("data-value", "hidden")
@@ -96,12 +121,18 @@ function addNumber(nbr){
     } else if (onScreenNumber.length === 0 && nbr === ".") {
         //If the user tries to add a point directly on an empty screen, add a zero before
         screenTextContainer.textContent = "0."
+        isWaiting = false
     } else if (onScreenNumber === "0" && nbr === "."){
         //If the user tries to add a point when the screen is showing a zero (which is default), add directly after the zero.
         screenTextContainer.textContent = onScreenNumber + nbr
+        isWaiting = false
     } else if (onScreenNumber === "0"){
         //If the screen is showing the default number, zero, clear it and show the new input
         screenTextContainer.textContent = nbr
+        isWaiting = false
+    } else if (onScreenNumber === "-0"){
+        screenTextContainer.textContent = "-" + nbr
+        isWaiting = false
     } else {
         //Add number after what already exists
         if (isWaiting){
@@ -140,6 +171,16 @@ function equation(type){
     isWaiting = true
 }
 
+//Function to get the opposite
+function opposite(){
+    if (isWaiting){
+        screenTextContainer.textContent = "-0"
+    } else {
+        screenTextContainer.textContent = -screenTextContainer.textContent
+    }
+    
+}
+
 //Function to get result based on what equation was choosen by the user
 function egal(){
     if (onResult === true){
@@ -150,10 +191,6 @@ function egal(){
     onResult = true
     //Get the second number of the equation (currently on screen)
     equationNumber = screenTextContainer.textContent
-    if (equationNumber === ""){
-        alert("Give another number.");
-        return;
-    }
     if (equationType === "addition"){
         //Get the String and transform to Float to make the addition
         result = parseFloat(lastNumber) + parseFloat(equationNumber)
@@ -167,7 +204,6 @@ function egal(){
         //Same but with division
         result = parseFloat(lastNumber) / parseFloat(equationNumber)
     } else { return }
-
     //If the result is longer than 7 chars, add "..." at the end.
     if (result.toString().length <= 7){
         screenTextContainer.textContent = result
