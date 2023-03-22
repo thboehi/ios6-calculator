@@ -10,6 +10,13 @@
     margin: 0;
     padding: 0;
     touch-action: manipulation;
+    -webkit-touch-callout: none; /* iOS Safari */
+          -webkit-user-select: none; /* Safari */
+           -khtml-user-select: none; /* Konqueror HTML */
+             -moz-user-select: none; /* Old versions of Firefox */
+              -ms-user-select: none; /* Internet Explorer/Edge */
+                  user-select: none; /* Non-prefixed version, currently
+                                        supported by Chrome, Edge, Opera and Firefox */
 }
 html, body{
     height: 100%;
@@ -25,6 +32,9 @@ body{
 h1{
     font-family: SFPro;
     color: #f2f4f3;
+}
+h1:before{
+    content: "iOS 6 Maths";
 }
 #msg:after{
     content: "Skeuomorphism, we miss you";
