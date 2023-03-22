@@ -221,6 +221,7 @@ h1:before{
     }
     body{
         display: block;
+        overflow: hidden;
     }
     #ntf-container{
         position: absolute;
@@ -245,7 +246,7 @@ h1:before{
     }
     #calculator-buttons-container{
         padding: 20px;
-        height: 100%;
+        height: 100vh;
         grid-template-columns: repeat(4, 1fr);
     }
 }
