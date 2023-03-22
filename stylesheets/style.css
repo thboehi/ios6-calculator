@@ -241,11 +241,15 @@ h1:before{
     }
     #calculator-screen{
         width: 100%;
-        height: 120px;
+        height: 160px;
         box-sizing: border-box;
+    }
+    #calculator-screen-text{
+        font-size: 5rem
     }
     #calculator-buttons-container{
         padding: 20px;
+        padding-top: 40px;
         height: 100vh;
         grid-template-columns: repeat(4, 1fr);
     }
