@@ -15,9 +15,13 @@ let onResult = false
 //Define a var to save the text before it's copied
 let beforeCopy
 //Text that is shown on copy
-let copyConfirmationText = "Copied !"
+let copyConfirmationText = "Copied"
 //Variable to say if notification is active
 let ntfActive = false
+//Define a variable to know if calculator is waiting for a new input
+let isWaiting = false
+//Define a new var for last equation number to use multiple egal (Not use for the moment, future update)
+//let lastEquationNumber
 
 //This part is enterly for visual. It is done to adapt the size of the buttons when the page is loaded or when resized.
 //The first variable is when the page is loaded, it get the button width (as on css it is 1fr and it adapts on user's screen)
@@ -79,7 +83,6 @@ function addNumber(nbr){
         onResult = false
     } else if(onScreenNumber.length >= 5 || onScreenNumber.includes(".") && nbr === "."){
         if (ntfActive){
-            
         } else if (!ntfActive) {
             ntfActive = true
             document.getElementById("ntf-container").setAttribute("data-value", "visible")
@@ -88,7 +91,6 @@ function addNumber(nbr){
                 document.getElementById("ntf-container").setAttribute("data-value", "hidden")
             }, 3000);
         }
-        
         //If the number is bigger than 5 characters, stop adding more. Or if he tries to add . but there is already one, don't add.
         return;
     } else if (onScreenNumber.length === 0 && nbr === ".") {
@@ -102,7 +104,13 @@ function addNumber(nbr){
         screenTextContainer.textContent = nbr
     } else {
         //Add number after what already exists
-        screenTextContainer.textContent = onScreenNumber + nbr
+        if (isWaiting){
+            screenTextContainer.textContent = nbr
+            isWaiting = false
+        } else {
+            screenTextContainer.textContent = onScreenNumber + nbr
+        }
+        
     }
 }
 
@@ -129,7 +137,7 @@ function equation(type){
     }
     equationType = type
     onResult = false
-    screenTextContainer.textContent = ""
+    isWaiting = true
 }
 
 //Function to get result based on what equation was choosen by the user
