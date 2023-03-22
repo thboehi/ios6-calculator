@@ -36,8 +36,7 @@ h1{
 h1:before{
     content: "iOS 6 Maths";
 }
-#msg:after{
-    content: "Skeuomorphism, we miss you";
+#msg{
     font-family: SFPro;
     color: #f2f4f3;
     font-size: 1rem;
@@ -46,6 +45,18 @@ h1:before{
 #msg:before{
     content: "💖 ";
     font-style: normal;
+}
+#msg a{
+    color: inherit;
+    text-decoration: underline 0.15em rgba(255, 255, 255, 0);
+    transition: text-decoration-color 300ms ease-in-out, opacity 300ms ease-in-out, text-underline-offset 300ms ease-in-out;
+    opacity: 1;
+    text-underline-offset: -0.2rem;
+}
+#msg a:hover{
+    opacity: 0.75;
+    text-underline-offset: 0.1rem;
+    text-decoration-color: rgba(255, 255, 255, 0.75);
 }
 #calculator{
     border: #000 solid 5px;
