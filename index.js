@@ -12,14 +12,36 @@ let result = 0
 let screenTextContainer = document.getElementById("calculator-screen-text")
 //Define if the calculator state, if showing a result or if entering a number
 let onResult = false
-const buttonWidth = document.querySelector('.calculator-button').clientWidth;
-const gridButtonsContainer = document.querySelector('#calculator-buttons-container')
 
+//This part is enterly for visual. It is done to adapt the size of the buttons when the page is loaded or when resized.
+//The first variable is when the page is loaded, it get the button width (as on css it is 1fr and it adapts on user's screen)
+let buttonWidth = document.querySelector('.calculator-button').clientWidth;
+//Get the container of buttons, to apply later the style
+const gridButtonsContainer = document.querySelector('#calculator-buttons-container')
+//Get the size of user's screen
 let screenWidth = document.documentElement.clientWidth
+//If the user has a screen smaller than 768, which mean that he is on an tablet or phone, apply the style.
 if (screenWidth <= 768){
+    //First we set a new height which is based on button width, but minus 1/6 of his size
     buttonsHeight = (parseInt(buttonWidth - ((1/6)*buttonWidth)))
+    //Apply the style
     gridButtonsContainer.style.gridTemplateRows = `repeat(5, ${buttonsHeight}px)`
 }
+//This is exactly the same as before but it is triggered when the page is resized, to be responsive and nice looking
+window.addEventListener('resize', () => {
+    screenWidth = document.documentElement.clientWidth;
+    if (screenWidth <= 768){
+        buttonWidth = document.querySelector('.calculator-button').clientWidth;
+        buttonsHeight = (parseInt(buttonWidth - ((1/6)*buttonWidth)))
+        gridButtonsContainer.style.gridTemplateRows = `repeat(5, ${buttonsHeight}px)`
+    } else {
+        //If it is bigger than 768px, just apply default style
+        gridButtonsContainer.style.gridTemplateRows = `repeat(5, 60px)`
+    }
+    
+});
+
+
 //Function to add number
 function addNumber(nbr){
     //Get what is on the screen
