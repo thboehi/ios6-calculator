@@ -12,7 +12,14 @@ let result = 0
 let screenTextContainer = document.getElementById("calculator-screen-text")
 //Define if the calculator state, if showing a result or if entering a number
 let onResult = false
+const buttonWidth = document.querySelector('.calculator-button').clientWidth;
+const gridButtonsContainer = document.querySelector('#calculator-buttons-container')
 
+let screenWidth = document.documentElement.clientWidth
+if (screenWidth <= 768){
+    buttonsHeight = (parseInt(buttonWidth - ((1/6)*buttonWidth)))
+    gridButtonsContainer.style.gridTemplateRows = `repeat(5, ${buttonsHeight}px)`
+}
 //Function to add number
 function addNumber(nbr){
     //Get what is on the screen
@@ -50,8 +57,14 @@ function clearText(){
 //Function to get first number and type of equation
 function equation(type){
     //Get what on the screen and define what type of equation user wants to do when the user will press egal
-    onScreenNumber = screenTextContainer.textContent
-    lastNumber = screenTextContainer.textContent
+    //If the user already pressed once and is on the second etap (which is add a second number) it doesn't
+    // get what on the screen again as it is empty.
+    if (screenTextContainer.textContent === ""){
+        
+    } else {
+        onScreenNumber = screenTextContainer.textContent
+        lastNumber = screenTextContainer.textContent
+    }
     equationType = type
     onResult = false
     screenTextContainer.textContent = ""

@@ -162,3 +162,28 @@ h1:before{
 #eight{
     grid-area: eight;
 }
+
+@media screen and (max-width: 768px) {
+    h1{
+        display: none;
+    }
+    #msg{
+        display: none;
+    }
+    body{
+        display: block;
+    }
+    #calculator{
+        border: none;
+    }
+    #calculator-screen{
+        width: 100%;
+        height: 120px;
+        box-sizing: border-box;
+    }
+    #calculator-buttons-container{
+        padding: 20px;
+        height: 100%;
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
