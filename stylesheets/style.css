@@ -1,3 +1,5 @@
+/*This app was designed desktop first as it is meant to be a demo. However, a mobile version has been developed and perfectionned to match iOS 6 design. This is not perfect, I know. But I hope it still brings you nostalgia.*/
+
 @font-face {
     font-family: "SFPro";
     src: url("../assets/SFPRODISPLAYMEDIUM.OTF");
@@ -28,6 +30,41 @@ body{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+#ntf-container{
+    width: 270px;
+    background: rgba(252,253,251,1);
+    background: linear-gradient(180deg, rgba(252,253,251,1) 0%, rgba(228,227,230,1) 100%);
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    transform: translateY(34px);
+    transition: transform 300ms ease-in-out, opacity 300ms ease-in-out;
+    pointer-events: none;
+    
+}
+#ntf-container[data-value="hidden"]{
+    transform: translateY(4px);
+    opacity: 0;
+    transition: transform 0ms 300ms, opacity 300ms ease-in-out;
+}
+#ntf-icon{
+    aspect-ratio: 1/1;
+    width: 40px;
+    height: 40px;
+}
+#ntf-title, #ntf-content{
+    font-family: SFPro;
+}
+#ntf-title{
+    font-size: 1.2rem;
+}
+#ntf-content{
+    font-size: 1rem;
 }
 h1{
     font-family: SFPro;
@@ -184,6 +221,19 @@ h1:before{
     }
     body{
         display: block;
+    }
+    #ntf-container{
+        position: absolute;
+        top: 0;
+        left: 10px;
+        width: calc(100% - 20px);
+        box-sizing: border-box;
+        box-shadow: 0px 0px 12px -2px rgba(0,0,0,0.3);
+        -webkit-box-shadow: 0px 0px 12px -2px rgba(0,0,0,0.3);
+        transform: translateY(10px)
+    }
+    #ntf-container[data-value="hidden"]{
+        transform: translateY(-30px);
     }
     #calculator{
         border: none;

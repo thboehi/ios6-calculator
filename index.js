@@ -16,6 +16,8 @@ let onResult = false
 let beforeCopy
 //Text that is shown on copy
 let copyConfirmationText = "Copied !"
+//Variable to say if notification is active
+let ntfActive = false
 
 //This part is enterly for visual. It is done to adapt the size of the buttons when the page is loaded or when resized.
 //The first variable is when the page is loaded, it get the button width (as on css it is 1fr and it adapts on user's screen)
@@ -76,7 +78,17 @@ function addNumber(nbr){
         screenTextContainer.textContent = nbr
         onResult = false
     } else if(onScreenNumber.length >= 5 || onScreenNumber.includes(".") && nbr === "."){
-        alert("Maximum 5 caracters !")
+        if (ntfActive){
+            
+        } else if (!ntfActive) {
+            ntfActive = true
+            document.getElementById("ntf-container").setAttribute("data-value", "visible")
+            setTimeout(() => {
+                ntfActive = false
+                document.getElementById("ntf-container").setAttribute("data-value", "hidden")
+            }, 3000);
+        }
+        
         //If the number is bigger than 5 characters, stop adding more. Or if he tries to add . but there is already one, don't add.
         return;
     } else if (onScreenNumber.length === 0 && nbr === ".") {
