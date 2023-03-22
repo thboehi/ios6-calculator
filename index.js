@@ -22,6 +22,7 @@ function addNumber(nbr){
         screenTextContainer.textContent = nbr
         onResult = false
     } else if(onScreenNumber.length >= 5 || onScreenNumber.includes(".") && nbr === "."){
+        alert("Maximum 5 caracters !")
         //If the number is bigger than 5 characters, stop adding more. Or if he tries to add . but there is already one, don't add.
         return;
     } else if (onScreenNumber.length === 0 && nbr === ".") {
@@ -66,6 +67,10 @@ function egal(){
     onResult = true
     //Get the second number of the equation (currently on screen)
     equationNumber = screenTextContainer.textContent
+    if (equationNumber === ""){
+        alert("Give another number.");
+        return;
+    }
     if (equationType === "addition"){
         //Get the String and transform to Float to make the addition
         result = parseFloat(lastNumber) + parseFloat(equationNumber)
