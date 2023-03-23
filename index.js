@@ -84,26 +84,30 @@ function addNumber(nbr){
         screenTextContainer.textContent = nbr
         onResult = false
     } else if(onScreenNumber.length >= 5){
-        //Notification to show that you cannot add more than 5 numbers
-        if (ntfActive){
-            //If a notification is already on screen, don't show a new one
-        } else if (!ntfActive) {
-            //Activate notification on screen
-            ntfActive = true
-            //Set in html that ntf-container must be visible
-            document.getElementById("ntf-container").setAttribute("data-value", "visible")
-            //Set the message that will be shown
-            document.getElementById("ntf-content").textContent = "5 numbers maximum allowed."
-            //Set a timeout that will hide the message after 3 seconds
-            setTimeout(() => {
-                //Deactivate notification on screen
-                ntfActive = false
-                //Set in html that ntf-container must be hidden
-                document.getElementById("ntf-container").setAttribute("data-value", "hidden")
-            }, 3000);
-        }
+        if (isWaiting){
+            screenTextContainer.textContent = nbr
+        } else {
+            //Notification to show that you cannot add more than 5 numbers
+            if (ntfActive){
+                //If a notification is already on screen, don't show a new one
+            } else if (!ntfActive) {
+                //Activate notification on screen
+                ntfActive = true
+                //Set in html that ntf-container must be visible
+                document.getElementById("ntf-container").setAttribute("data-value", "visible")
+                //Set the message that will be shown
+                document.getElementById("ntf-content").textContent = "5 numbers maximum allowed."
+                //Set a timeout that will hide the message after 3 seconds
+                setTimeout(() => {
+                    //Deactivate notification on screen
+                    ntfActive = false
+                    //Set in html that ntf-container must be hidden
+                    document.getElementById("ntf-container").setAttribute("data-value", "hidden")
+                }, 3000);
+            }
         //If the number is bigger than 5 characters, stop adding more. Or if he tries to add . but there is already one, don't add.
         return;
+        }
     } else if (onScreenNumber.includes(".") && nbr === "."){
         //Same as before, please read above for explanation
         if (ntfActive){
