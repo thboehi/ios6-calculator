@@ -86,6 +86,7 @@ function addNumber(nbr){
     } else if(onScreenNumber.length >= 5){
         if (isWaiting){
             screenTextContainer.textContent = nbr
+            isWaiting = false
         } else {
             //Notification to show that you cannot add more than 5 numbers
             if (ntfActive){
